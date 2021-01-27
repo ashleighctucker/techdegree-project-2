@@ -102,8 +102,6 @@ def pick_team(teams_list):
                 raise ValueError()
         except ValueError:
             print("Sorry, that's an invalid input. Please select 1, 2, or 3.")
-        except NameError:
-            print("Sorry, that's not a valid input. Try again.")
         else:
                 if choice == 1:
                     display_team("Panthers", teams_list[0])
@@ -128,8 +126,6 @@ def start_tool():
                 raise ValueError()
         except ValueError:
             print("Sorry, that's not a valid input. Please select 1 or 2.")
-        except NameError:
-            print("Sorry, that's not a valid input. Try again.")
         else:
             if option == 2:
                 print("Closing Stats Tool...")
