@@ -1,4 +1,5 @@
 import constants
+import copy
 
 
 def clean_guardians(player_list):
@@ -20,7 +21,7 @@ def clean_experience(player_list):
 
 
 def clean_data():
-    clean_players = [player for player in constants.PLAYERS]
+    clean_players = copy.deepcopy(constants.PLAYERS)
     clean_guardians(clean_players)
     clean_height(clean_players)
     clean_experience(clean_players)
@@ -39,7 +40,7 @@ def sort_by_experience(player_list):
 
 
 def balance_teams(player_list_1, player_list_2):
-    teams_copy = [team for team in constants.TEAMS]
+    teams_copy = copy.deepcopy(constants.TEAMS)
     teams_copy[0] = player_list_1[0:3] + player_list_2[0:3]
     teams_copy[1] = player_list_1[3:6] + player_list_2[3:6]
     teams_copy[2] = player_list_1[6:9] + player_list_2[6:9]
@@ -89,42 +90,46 @@ def display_team(team_name, team):
     print("---------------------\n")
 
 def pick_team(teams_list):
-
-    print("1)  Panthers")
-    print("2)  Bandits")
-    print("3)  Warriors")
-    choice = int(input("\nEnter a team option:   "))
-    if choice < 1:
-        raise ValueError()
-    if choice > 3:
-        raise ValueError()
     while True:
-
+        print("1)  Panthers")
+        print("2)  Bandits")
+        print("3)  Warriors")
         try:
-            if choice == 1:
-                display_team("Panthers", teams_list[0])
-                break
-            elif choice == 2:
-                display_team("Bandits", teams_list[1])
-                break
-            elif choice == 3:
-                display_team("Warriors", teams_list[2])
-                break
+            choice = int(input("\nEnter a team option:   "))
+            if choice < 1:
+                raise ValueError()
+            if choice > 3:
+                raise ValueError()
         except ValueError:
-            print("Sorry, that's an invalid input. Try again.")
+            print("Sorry, that's an invalid input. Please select 1, 2, or 3.")
+        except NameError:
+            print("Sorry, that's not a valid input. Try again.")
+        else:
+                if choice == 1:
+                    display_team("Panthers", teams_list[0])
+                    break
+                elif choice == 2:
+                    display_team("Bandits", teams_list[1])
+                    break
+                elif choice == 3:
+                    display_team("Warriors", teams_list[2])
+                    break
+
 
 
 def start_tool():
 
     while True:
         print("Here are your choices:\n \n1)  Display Team Stats\n2)  Quit\n")
-        option = int(input("Enter an option:   "))
         try:
+            option = int(input("Enter an option:   "))
             if option < 1:
                 raise ValueError()
             if option > 2:
                 raise ValueError()
         except ValueError:
+            print("Sorry, that's not a valid input. Please select 1 or 2.")
+        except NameError:
             print("Sorry, that's not a valid input. Try again.")
         else:
             if option == 2:
@@ -133,7 +138,6 @@ def start_tool():
             elif option == 1:
                 pick_team(balanced_teams)
                 continue
-
 
 if __name__ == "__main__":
     print("---------------------\nBasketball Stats Tool\n---------------------")
