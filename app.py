@@ -95,7 +95,7 @@ def pick_team(teams_list):
         print("2)  Bandits")
         print("3)  Warriors")
         try:
-            choice = int(raw_input("\nEnter a team option:   "))
+            choice = int(input("\nEnter a team option:   "))
             if choice < 1:
                 raise ValueError()
             if choice > 3:
@@ -119,7 +119,7 @@ def start_tool():
     while True:
         print("Here are your choices:\n \n1)  Display Team Stats\n2)  Quit\n")
         try:
-            option = int(raw_input("Enter an option:   "))
+            option = int(input("Enter an option:   "))
             if option < 1:
                 raise ValueError()
             if option > 2:
